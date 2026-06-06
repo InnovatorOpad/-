@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد تصاميم الشعر - TikTok</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:ital@0;1&family=Reem+Kufi+Fun&family=Cairo:wght@400;700;900&family=El+Messiri&family=Tajawal:wght@400;700;900&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0a0a;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            max-width: 420px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.9rem;
+            background: linear-gradient(135deg, #f9ca24, #f0932b, #f9ca24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border-radius: 16px;
+            border: 2px solid #2a2a2a;
+            background: #141414;
+            color: #fff;
+            font-size: 1.1rem;
+            font-family: 'Cairo', sans-serif;
+            resize: vertical;
+            outline: none;
+            transition: 0.3s;
+        }
+        textarea:focus {
+            border-color: #f9ca24;
+            box-shadow: 0 0 20px rgba(249,202,36,0.25);
+        }
+        .designs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .design-btn {
+            aspect-ratio: 9/16;
+            border-radius: 14px;
+            border: 2px solid #2a2a2a;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.6);
+            transition: 0.3s;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6px;
+            backdrop-filter: blur(2px);
+            letter-spacing: 0.5px;
+        }
+        .design-btn:hover, .design-btn.active {
+            border-color: #f9ca24;
+            transform: scale(1.04);
+            box-shadow: 0 0 20px rgba(249,202,36,0.5);
+        }
+        /* 12 تصميمًا عصريًا */
+        .d1 { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); } /* ليلكي عميق */
+        .d2 { background: linear-gradient(160deg, #000428, #004e92); } /* كحلي لامع */
+        .d3 { background: radial-gradient(circle at 30% 20%, #ff9a9e, #fad0c4, #fad0c4); } /* خوخي ناعم */
+        .d4 { background: linear-gradient(45deg, #1a1a1a, #2d2d2d); box-shadow: inset 0 0 80px rgba(212, 175, 55, 0.15); } /* أسود ذهبي داخلي */
+        .d5 { background: linear-gradient(135deg, #434343, #000000); } /* فحمي كلاسيك */
+        .d6 { background: linear-gradient(to right, #141e30, #243b55); } /* أزرق داكن أنيق */
+        .d7 { background: radial-gradient(ellipse at top, #e0c3fc, #8ec5fc); } /* بنفسجي سماوي */
+        .d8 { background: linear-gradient(135deg, #ffd89b, #19547b); } /* غروب بحري */
+        .d9 { background: #0c0c0c; position: relative; }
+        .d9::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, #ffd700, #ff8c00, #ffd700, #ff8c00); animation: spin 8s linear infinite; opacity: 0.15; }
+        .d9 span { position: relative; z-index: 1; }
+        .d10 { background: radial-gradient(circle at center, #1e1e1e, #0f0f0f); box-shadow: inset 0 0 60px rgba(0,255,255,0.15); } /* توهج سماوي */
+        .d11 { background: linear-gradient(135deg, #2c3e50, #bdc3c7); } /* رمادي فاخر */
+        .d12 { background: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 10px, #2a2a2a 10px, #2a2a2a 20px); } /* نسيج هندسي */
+
+        .preview-box {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border-radius: 20px;
+            border: 2px solid #333;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            transition: 0.4s;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .poetry-text {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.8;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            word-break: break-word;
+            max-width: 100%;
+            transition: 0.2s;
+        }
+        .design-label {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            z-index: 1;
+            background: rgba(0,0,0,0.4);
+            padding: 4px 14px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f9ca24, #f0932b);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(249,202,36,0.4);
+        }
+        .btn-secondary {
+            background: #1e1e1e;
+            color: #fff;
+            border: 1px solid #333;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .font-selector {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1a1a1a;
+            padding: 10px 16px;
+            border-radius: 30px;
+            border: 1px solid #2a2a2a;
+        }
+        select {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            flex: 1;
+        }
+        .note {
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-top: 20px;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 400px) {
+            .poetry-text { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ بيت الشعر بتصميم تيك توكي</h1>
+
+        <div class="input-group">
+            <textarea id="poetryInput" placeholder="اكتب بيت الشعر هنا..."></textarea>
+        </div>
+
+        <div class="designs-grid" id="designGrid"></div>
+
+        <div class="font-selector">
+            <span>🎨 الخط:</span>
+            <select id="fontSelect">
+                <option value="'Amiri', serif">أميري (كلاسيكي)</option>
+                <option value="'Reem Kufi Fun', sans-serif" selected>كوفي حديث</option>
+                <option value="'Cairo', sans-serif">قاهرة عصري</option>
+                <option value="'El Messiri', sans-serif">المسيري</option>
+                <option value="'Amiri Quran', serif">قرآني</option>
+                <option value="'Tajawal', sans-serif">تاجوال</option>
+                <option value="'Almarai', sans-serif">المريئي</option>
+            </select>
+        </div>
+
+        <div class="preview-box" id="previewBox">
+            <div class="poetry-text" id="displayPoetry">أضف بيتاً</div>
+            <span class="design-label" id="designLabel">تصميم 1</span>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="screenshotBtn">📸 حفظ كصورة</button>
+            <button class="btn btn-secondary" id="refreshBtn">🔄 عشوائي</button>
+        </div>
+        <p class="note">اختر التصميم ثم خذ لقطة شاشة للفيديو ✂️</p>
+    </div>
+
+    <script>
+        const designs = [
+            { id: 1, class: 'd1', name: 'ليلكي عميق' },
+            { id: 2, class: 'd2', name: 'كحلي لامع' },
+            { id: 3, class: 'd3', name: 'خوخي ناعم' },
+            { id: 4, class: 'd4', name: 'ذهبي داخلي' },
+            { id: 5, class: 'd5', name: 'فحمي كلاسيك' },
+            { id: 6, class: 'd6', name: 'أزرق داكن' },
+            { id: 7, class: 'd7', name: 'سماوي بنفسجي' },
+            { id: 8, class: 'd8', name: 'غروب بحري' },
+            { id: 9, class: 'd9', name: 'نيون ذهبي' },
+            { id: 10, class: 'd10', name: 'توهج سماوي' },
+            { id: 11, class: 'd11', name: 'رمادي فاخر' },
+            { id: 12, class: 'd12', name: 'هندسي عصري' }
+        ];
+
+        const poetryInput = document.getElementById('poetryInput');
+        const displayPoetry = document.getElementById('displayPoetry');
+        const previewBox = document.getElementById('previewBox');
+        const designGrid = document.getElementById('designGrid');
+        const fontSelect = document.getElementById('fontSelect');
+        const designLabel = document.getElementById('designLabel');
+
+        let currentDesign = designs[0];
+
+        function renderDesignButtons() {
+            designGrid.innerHTML = '';
+            designs.forEach(d => {
+                const btn = document.createElement('div');
+                btn.className = `design-btn ${d.class}`;
+                btn.textContent = d.name;
+                if (d.id === 9) { // نيون ذهبي له span خاص للطبقة المتحركة
+                    const span = document.createElement('span');
+                    span.textContent = d.name;
+                    btn.appendChild(span);
+                }
+                btn.addEventListener('click', () => setDesign(d));
+                if (d.id === currentDesign.id) btn.classList.add('active');
+                designGrid.appendChild(btn);
+            });
+        }
+
+        function setDesign(design) {
+            currentDesign = design;
+            previewBox.className = `preview-box ${design.class}`;
+            designLabel.textContent = design.name;
+            document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.querySelector(`.design-btn.${design.class}`);
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+
+        poetryInput.addEventListener('input', () => {
+            const text = poetryInput.value.trim();
+            displayPoetry.textContent = text || 'أضف بيتاً';
+        });
+
+        fontSelect.addEventListener('change', () => {
+            displayPoetry.style.fontFamily = fontSelect.value;
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            const randomDesign = designs[Math.floor(Math.random() * designs.length)];
+            setDesign(randomDesign);
+            const fonts = [
+                "'Amiri', serif",
+                "'Reem Kufi Fun', sans-serif",
+                "'Cairo', sans-serif",
+                "'El Messiri', sans-serif",
+                "'Amiri Quran', serif",
+                "'Tajawal', sans-serif",
+                "'Almarai', sans-serif"
+            ];
+            fontSelect.value = fonts[Math.floor(Math.random() * fonts.length)];
+            displayPoetry.style.fontFamily = fontSelect.value;
+        });
+
+        // زر حفظ الصورة
+        document.getElementById('screenshotBtn').addEventListener('click', function() {
+            if (typeof html2canvas === 'undefined') {
+                loadHtml2Canvas(() => captureScreenshot());
+                return;
+            }
+            captureScreenshot();
+        });
+
+        function captureScreenshot() {
+            html2canvas(previewBox, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'تصميم-بيت-شعر.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        function loadHtml2Canvas(callback) {
+            if (window.html2canvas) {
+                callback();
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+            script.onload = callback;
+            document.head.appendChild(script);
+        }
+
+        // افتراضي
+        displayPoetry.style.fontFamily = fontSelect.value;
+        renderDesignButtons();
+        setDesign(currentDesign);
+        poetryInput.value = 'ألا ليت شعري هل أبيتن ليلةً ... بوادي القرى إني إذن لسعيدُ';
+        displayPoetry.textContent = poetryInput.value;
+    </script>
+</body>
+  </html>
